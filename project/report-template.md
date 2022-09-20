@@ -23,11 +23,11 @@ Honestly, the model performed worse after my attempts at tuning hyper parameters
 I would take the time to standardize/normalize the continuous features, so their variation is more influential on the prediction results vs just sheer magnitude. I would also take the time to specifically tune the hyperparameters of the top performing models.
 
 ### Create a table with the models you ran, the hyperparameters modified, and the kaggle score.
-|model|hpo1|hpo2|hpo3|score|
+|model|hpo1 num_stack_levels|hpo2 num_bag_folds|hpo3 num_bag_sets|score|
 |--|--|--|--|--|
-|initial|?|?|?|?|
-|add_features|?|?|?|?|
-|hpo|?|?|?|?|
+|initial|1|8|20|1.76720|
+|add_features|1|8|20|0.67915|
+|hpo|1|5|1|0.77584|
 
 ### Create a line plot showing the top model score for the three (or more) training runs during the project.
 
@@ -38,4 +38,4 @@ I would take the time to standardize/normalize the continuous features, so their
 ![model_test_score.png](model_test_score.png)
 
 ## Summary
-TODO: Add your explanation
+I used AutoGluon's TabularPredictor to try and predict bike share demand. The initial model without any features engineered was used as a benchmark and performed poorly. Simply adding features derived from datetime siginificantly increased performance. This shows how important feature engineering can be. I believe even more improvement can be made from standardizing/normalizing the continuous features. This can be done in future iterations of this project. Hyperparameter tuning for AutoGluon can be tricky. Specifying hyperparameters for specific model types takes a lot of knowledge and time. Trying to only tune TabularPredictor hyperparamters can actually worsen the outcome compared to presets='best_quality'. Removing the time_limit makes it take way longer to train and results did not improve. Overall was a good learning experience, and I hope to learn more about and become more proficient at AutoGluon hyper parameter tuning. 
